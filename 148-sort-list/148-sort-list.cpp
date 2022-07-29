@@ -9,72 +9,62 @@
  * };
  */
 
-void merge(vector<int> &arr, int left, int mid, int right) {
-    int numOfElement = right - left + 1;
-    vector<int> newArr(numOfElement, 0);
-    int leftIdx = left;
-    int rightIdx = mid + 1;
-    int newArrIdx = 0;
-    
-    while (newArrIdx < numOfElement && leftIdx <= mid && rightIdx <= right) {
-        if (arr[leftIdx] > arr[rightIdx]) {
-            newArr[newArrIdx] = arr[rightIdx];
-            rightIdx++;
-        } else {
-            newArr[newArrIdx] = arr[leftIdx];
-            leftIdx++;
-        }
-        newArrIdx++;
-    }
-    
-    while (leftIdx <= mid) {
-        newArr[newArrIdx] = arr[leftIdx];
-        leftIdx++;
-        newArrIdx++;
-    }
-    
-    while (rightIdx <= right) {
-        newArr[newArrIdx] = arr[rightIdx];
-        rightIdx++;
-        newArrIdx++;
-    }
-    
-    newArrIdx = 0;
-    for (int i = left; i <= right; i++) {
-        arr[i] = newArr[newArrIdx];
-        newArrIdx++;
-    }
-}
-
-void mergesort(vector<int> &arr, int left, int right) {
-    if (left >= right) return;
-    int mid = (left + right) / 2;
-    mergesort(arr, left, mid);
-    mergesort(arr, mid+1, right);
-    merge(arr, left, mid, right);
-}
 
 
 class Solution {
 public:
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        ListNode* newList = new ListNode(0);
+        ListNode* curr = newList;
+        while (l1 != nullptr && l2 != nullptr) {
+            if (l1->val > l2->val) {
+                curr->next = l2;
+                l2 = l2->next;
+            } else {
+                curr->next = l1;
+                l1 = l1->next;
+            }
+            curr = curr->next;
+        }
+        
+        while (l1 != nullptr) {
+            curr->next = l1;
+            l1 = l1->next;
+            curr = curr->next;
+        }
+        
+        while (l2 != nullptr) {
+            curr->next = l2;
+            l2 = l2->next;
+            curr = curr->next;
+        }
+        
+        ListNode *ans = newList->next;
+        // newList->next = nullptr;
+        // delete newList;
+        return ans;
+        
+    }
+
     ListNode* sortList(ListNode* head) {
-        vector<int> arr;
-        ListNode *ptr = head;
-        
-        while (ptr != nullptr) {
-            arr.push_back(ptr->val);
-            ptr = ptr->next;
+        if (head == nullptr || head->next == nullptr) {
+            return head;
         }
         
-        // Merge sort
-        mergesort(arr, 0, arr.size() - 1);
-        ptr = head;
-        for (int i = 0; i < arr.size(); i++) {
-            ptr->val = arr[i];
-            ptr = ptr->next;
+        ListNode* last = nullptr;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        
+        while (fast != nullptr && fast->next != nullptr) {
+            last = slow;
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
-        return head;
+        last->next = nullptr;
+        ListNode* l1 = sortList(head);
+        ListNode* l2 = sortList(slow);
         
+        return merge(l1, l2);
     }
 };
