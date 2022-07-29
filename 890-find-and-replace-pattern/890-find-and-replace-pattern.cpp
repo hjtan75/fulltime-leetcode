@@ -14,7 +14,7 @@ public:
                     patternFlag[pattern[i] - 'a'] = false;
                 } else {
                     if (pattern[i] + transform[words[w][i] - 'a'] != words[w][i]) {
-                        cout << "Break for " << words[w] << endl;
+                        // cout << "Break for " << words[w] << endl;
                         break;
                     }
                 }
