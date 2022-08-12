@@ -11,30 +11,44 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int> arr;
-        ListNode* ptr = head;
-        int num = 0;
+        if (head->next == nullptr) return true;
         
-        while(ptr != nullptr) {
-            arr.push_back(ptr->val);
-            ptr = ptr->next;
-            num++;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* midpoint = nullptr;
+        
+        while(fast != nullptr && fast->next != nullptr) {
+            // midpoint = slow;
+            slow = slow->next;
+            fast = fast->next->next;
         }
         
-        int p1, p2;
-        if (num % 2 == 0) {
-            p1 = num / 2 - 1;
-            p2 = num / 2;
-        } else {
-            p1 = num / 2;
-            p2 = num / 2;
-        }
+        // Reverse first half of linked list
+        ListNode dummy;
+        ListNode* a = &dummy;
+        ListNode* b = head;
+        ListNode* c = head->next;
         
-        while (p1 >= 0 && p2 < num) {
-            if (arr[p1] != arr[p2]) return false;
-            p1--;
-            p2++;
+        while (b != slow) {
+            b->next = a;
+            a = b;
+            b = c;
+            c = c->next;
+        }
+        head->next = nullptr;
+        head = a;
+        
+        ListNode* p1 = head;
+        ListNode* p2 = slow;
+        if (fast != nullptr) p2 = p2->next;
+        while (p1 != nullptr && p2 != nullptr) {
+            cout << p1->val << " " << p2->val << endl;
+            if (p1->val != p2->val) return false;
+            p1 = p1->next;
+            p2 = p2->next;
         }
         return true;
+        
+        
     }
 };
