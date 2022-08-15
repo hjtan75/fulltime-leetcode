@@ -24,9 +24,6 @@ public:
         
         int left = solve(node->left, depth, max_diameter);
         int right = solve(node->right, depth, max_diameter);
-        // if (left + right > max_diameter) {
-        //     cout << left << " " << right << endl;
-        // }
         max_diameter = max(max_diameter, left + right);
         return max(left, right) + 1;
     }
