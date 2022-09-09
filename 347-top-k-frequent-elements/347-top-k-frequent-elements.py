@@ -9,12 +9,13 @@ class Solution:
             else:
                 lager[num] = 1
         
-        # print(lager)
-        sorted_dict = sorted(lager.items(), key=lambda x: x[1], reverse=True)
-        
-        # print(sorted_dict)
+        res = [[] for i in range(len(nums) + 1)] # add one because we need the full range
+        for c, v in lager.items():
+            res[v].append(c)
         
         ans = []
-        for i in range(k):
-            ans.append(sorted_dict[i][0])
-        return ans
+        for i in range(len(res) - 1, 0, -1):
+            ans += res[i]
+            if len(ans) == k:
+                return ans
+        
