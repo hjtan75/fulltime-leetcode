@@ -1,16 +1,22 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        dic = {}
-        for word in strs:
-            w = "".join(sorted(word))
-            # print(w)
-            if w in dic:
-                dic[w].append(word)
+        # Instead of sorting all the word, just use an array to build a hashed map
+        
+        hashmap = {}
+        for w in strs:
+            arr = [0] * 26
+            
+            for c in w:
+                arr[ord(c) - ord('a')] += 1
+                
+            hk = tuple(arr)
+            if hk in hashmap:
+                hashmap[hk].append(w)
             else:
-                dic[w] = [word]
+                hashmap[hk] = [w]
                 
         res = []
-        for k, v in dic.items():
+        for k, v in hashmap.items():
             res.append(v)
             
         return res
