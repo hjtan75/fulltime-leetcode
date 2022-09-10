@@ -15,8 +15,4 @@ class Solution:
             else:
                 hashmap[hk] = [w]
                 
-        res = []
-        for k, v in hashmap.items():
-            res.append(v)
-            
-        return res
+        return hashmap.values()
