@@ -27,15 +27,43 @@ class Solution:
         
         
         # Combine the 2 list
-        firstList = head
-        secondList = pre
+#         firstList = head
+#         secondList = pre
         
-        while secondList:
-            tmp1 = firstList.next
-            tmp2 = secondList.next
-            firstList.next = secondList
-            secondList.next = tmp1
-            firstList, secondList = tmp1, tmp2
+#         while secondList:
+#             tmp1 = firstList.next
+#             tmp2 = secondList.next
+#             firstList.next = secondList
+#             secondList.next = tmp1
+#             firstList, secondList = tmp1, tmp2
+
+        firstList = head.next
+        secondList = pre
+        combinedList = head
+        noNode = 1
+        
+        while firstList or secondList:
+            if noNode % 2 == 0:
+                tmp = firstList
+                combinedList.next = firstList
+                combinedList = combinedList.next
+                firstList = tmp.next
+            else:
+                tmp = secondList
+                combinedList.next = secondList
+                combinedList = combinedList.next
+                secondList = tmp.next
+            noNode += 1
+            
+        while firstList:
+            tmp = firstList
+            combinedList.next = firstList
+            combinedList = combinedList.next
+            firstList = tmp.next
+            
+            
+            
+                
         
         
         
