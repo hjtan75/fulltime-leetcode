@@ -8,14 +8,9 @@ class Solution:
         for i in range(numEle):
             if i != numEle - 1:
                 prefix *= nums[i]
-                ans[i+1] *= prefix
-                
-        # print(ans)
-        for i in range(numEle):
-            if i != numEle - 1:
                 postfix *= nums[numEle-i-1]
+                ans[i+1] *= prefix
                 ans[numEle-i-2] *= postfix
-        
-        # print(ans)
+                
         return ans
         
