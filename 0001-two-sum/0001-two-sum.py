@@ -11,15 +11,12 @@ class Solution:
                 numDict[nums[i]].append(i)
             else:
                 numDict[nums[i]] = [i]
-            
-        sortedNums = tuple(nums)
-        print(numDict)
         
         for num in nums:
             sub = target - num
-            if sub in sortedNums:
+            if sub in numDict:
                 if sub == num:
                     if len(numDict[sub]) > 1:
                         return [numDict[sub][0], numDict[sub][1]]
                 else:
-                    return [sortedNums.index(num), sortedNums.index(sub)]
+                    return [numDict[num][0], numDict[sub][0]]
