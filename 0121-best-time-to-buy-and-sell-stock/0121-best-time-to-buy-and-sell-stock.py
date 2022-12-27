@@ -1,5 +1,8 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
+        # Memory complexity: O(1)
+        # Time complexity: O(n)
+        # We only scan through the sequence once with two pointer
         maxProfit = 0
         buyDate = 0
         sellDate = 1
