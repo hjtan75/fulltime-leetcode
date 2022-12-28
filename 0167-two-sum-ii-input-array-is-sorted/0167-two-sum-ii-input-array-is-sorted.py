@@ -21,8 +21,8 @@ class Solution:
         
         for i in range(int(len(numbers))):
             t = target - numbers[i]
-            resultIdx = self.binarySearch(numbers, t)
+            resultIdx = self.binarySearch(numbers[i+1:], t) + i + 1
             if resultIdx >= 0 and i != resultIdx:
-                return sorted([i+1, resultIdx+1])
+                return [i+1, resultIdx+1]
             
             
