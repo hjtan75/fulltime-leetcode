@@ -1,28 +1,20 @@
 class Solution:
-    def binarySearch(self, numbers, num):
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        # This method two sum method can only be used on a sorted array
+        # Time complexity: O(n)
+        # Memory complexity: O(1)
         l = 0
         r = len(numbers) - 1
+        twoSum = numbers[l] + numbers[r]
         
-        while l <= r:
-            # print(num, l, r)
-            m = ceil((r + l) / 2)
-            if numbers[m] == num:
-                return m
-            
-            if num > numbers[m]:
-                l = m + 1
+        while twoSum != target:
+            if twoSum > target:
+                r -= 1
             else:
-                r = m - 1
-        
-        return -1 
-    
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        dic = {}
-        
-        for i in range(int(len(numbers))):
-            t = target - numbers[i]
-            resultIdx = self.binarySearch(numbers, t)
-            if resultIdx >= 0 and i != resultIdx:
-                return sorted([i+1, resultIdx+1])
+                l +=1
+            twoSum = numbers[l] + numbers[r]
+            
+                
+        return [l+1, r+1]
             
             
