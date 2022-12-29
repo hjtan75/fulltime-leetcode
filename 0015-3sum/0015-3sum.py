@@ -9,20 +9,20 @@ class Solution:
         # Memory complexity: O(n)
         
         ans = []
-        sortedNums = sorted(nums)
+        nums.sort()
         
-        for fIdx in range(len(sortedNums)-2):
-            if fIdx == 0 or sortedNums[fIdx] != sortedNums[fIdx-1]:
+        for fIdx in range(len(nums)-2):
+            if fIdx == 0 or nums[fIdx] != nums[fIdx-1]:
                 sIdx = fIdx + 1
-                tIdx = len(sortedNums) - 1
+                tIdx = len(nums) - 1
                 
                 while sIdx < tIdx:
-                    threeSum = sortedNums[fIdx] + sortedNums[sIdx] + sortedNums[tIdx]
-                    if sIdx - 1 != fIdx and sortedNums[sIdx] == sortedNums[sIdx-1]:
+                    threeSum = nums[fIdx] + nums[sIdx] + nums[tIdx]
+                    if sIdx - 1 != fIdx and nums[sIdx] == nums[sIdx-1]:
                         sIdx += 1
                     else:
                         if threeSum == 0:
-                            ans.append([sortedNums[fIdx], sortedNums[sIdx], sortedNums[tIdx]])
+                            ans.append([nums[fIdx], nums[sIdx], nums[tIdx]])
                             sIdx += 1
                             tIdx -= 1
                         elif threeSum > 0:
