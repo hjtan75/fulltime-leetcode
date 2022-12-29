@@ -23,15 +23,12 @@ class Solution:
                     else:
                         if threeSum == 0:
                             ans.append([sortedNums[fIdx], sortedNums[sIdx], sortedNums[tIdx]])
-                            # usedNums2.add(sortedNums[sIdx])
                             sIdx += 1
                             tIdx -= 1
                         elif threeSum > 0:
                             tIdx -= 1
                         else:
                             sIdx += 1    
-                
-                # usedNums.add(sortedNums[fIdx])
         return ans
                         
                     
