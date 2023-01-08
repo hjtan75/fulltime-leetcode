@@ -1,17 +1,17 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         lowestPoint = self.findingLowest(nums)
-        newArr = nums[lowestPoint:] + nums[:lowestPoint]
+        nums = nums[lowestPoint:] + nums[:lowestPoint]
         # print(lowestPoint)
         # print(newArr)
         l = 0
-        r = len(newArr) - 1
+        r = len(nums) - 1
         
         while l <= r:
             m = ceil((l+r)/2)
-            if newArr[m] == target:
+            if nums[m] == target:
                 return (m+lowestPoint)%len(nums)
-            elif newArr[m] > target:
+            elif nums[m] > target:
                 r = m - 1
             else:
                 l = m + 1
