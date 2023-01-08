@@ -13,23 +13,13 @@ class Solution:
             if list1.val < list2.val:
                 tmp = list1.next
                 combined.next = list1
-                combined = combined.next
                 list1 = tmp
             else:
                 tmp = list2.next
                 combined.next = list2
-                combined = combined.next
                 list2 = tmp
                 
-                # combined = combined.next
-                
-#             # print("L1:", list1.val, " L2:", list2.val, " Com:", combined.val)
-#             t = head
-#             while t != None:
-#                 print(t.val, end=" ")
-#                 t = t.next
-                
-#             print()
+            combined = combined.next
                 
                 
         while list1:
