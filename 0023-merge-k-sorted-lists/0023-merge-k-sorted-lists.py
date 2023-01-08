@@ -6,6 +6,11 @@
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         # Merging linked list one by one
+        # This would require O(kn) where k in the number of linked list and 
+        # n is the number of total element
+        # The better method is that by merging a pair of linked-list
+        # Every iteration, the number of linked list will device by half
+        # Time complexity: O(n log k)
         
         if len(lists) == 0:
             return
