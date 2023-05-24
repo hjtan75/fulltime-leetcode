@@ -1,40 +1,26 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        # Square check
-        for corner_j in range(0, 9, 3):
-            for corner_i in range(0, 9, 3):
-                check_list = [0]*9
-                for j in range(corner_j, corner_j+3, 1):
-                    for i in range(corner_i, corner_i+3, 1):
-                        if board[j][i] != '.':
-                            num = int(board[j][i]) - 1
-                            if check_list[num] == 1:
-                                return False
-                            else:
-                                check_list[num] = 1
-                            
-        # Row check
-        for j in range(0, 9):
-            check_list = [0]*9
-            for i in range(0, 9):
-                if board[j][i] != '.':
-                    num = int(board[j][i]) - 1
-                    if check_list[num] == 1:
-                        return False
-                    else:
-                        check_list[num] = 1
-                        
-        # Column check
-        for j in range(0, 9):
-            check_list = [0]*9
-            for i in range(0, 9):
-                if board[i][j] != '.':
-                    num = int(board[i][j]) - 1
-                    if check_list[num] == 1:
-                        return False
-                    else:
-                        check_list[num] = 1
-                        
+        # Default dictionary automatically add new element when no key is found
+        # We use mod to find which square does the small squares belongs to
+        row_dict = collections.defaultdict(set)
+        col_dict = collections.defaultdict(set)
+        square_dict = collections.defaultdict(set)
+        
+        for r in range(0, 9):
+            for c in range(0, 9):
+                if board[r][c] == '.':
+                    continue
+                
+                if board[r][c] in row_dict[r] or \
+                board[r][c] in col_dict[c] or \
+                board[r][c] in square_dict[(r // 3, c // 3)]:
+                    return False
+                
+                row_dict[r].add(board[r][c])
+                col_dict[c].add(board[r][c])
+                square_dict[(r // 3, c // 3)].add(board[r][c])
+                
+                
         return True
 
                                 
