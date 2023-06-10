@@ -1,23 +1,24 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        maxL = [0]
-        maxR = [0]
-        vol = 0
+        if not height:
+            return 0
         
-        for i in range(1, len(height)):
-            maxL.append(max(maxL[-1], height[i-1]))
-            maxR.insert(0, max(maxR[0], height[len(height) - i]))
-            
-        # print(maxL)
-        # print(maxR)
+        l, r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
+        res = 0
         
-        for i in range(len(height)):
-            v = min(maxL[i], maxR[i]) - height[i]
-            # print(v)
-            if v > 0:
-                vol += v
+        while l < r:
+            if leftMax < rightMax:
+                l += 1
+                leftMax = max(leftMax, height[l])
+                res += leftMax - height[l]
+            else:
+                r -= 1
+                rightMax = max(rightMax, height[r])
+                res += rightMax - height[r]
                 
-        return vol
+        return res
+                
             
         
         
