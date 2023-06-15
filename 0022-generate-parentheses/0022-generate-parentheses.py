@@ -8,14 +8,14 @@ class Solution:
                     res.append(oldString)
                     return
                 else:
-                    newRight = numRight + 1
-                    addParent(numLeft, newRight, numMax, str(oldString) + ')')
+                    # newRight = numRight + 1
+                    addParent(numLeft, numRight + 1, numMax, str(oldString) + ')')
             else:
-                newLeft = numLeft + 1
-                addParent(newLeft, numRight, numMax, str(oldString) + '(')
+                # newLeft = numLeft + 1
+                addParent(numLeft + 1, numRight, numMax, str(oldString) + '(')
                 if numLeft > numRight:
-                    newRight = numRight + 1
-                    addParent(numLeft, newRight, numMax, str(oldString) + ')')
+                    # newRight = numRight + 1
+                    addParent(numLeft, numRight + 1, numMax, str(oldString) + ')')
             return
 
         
