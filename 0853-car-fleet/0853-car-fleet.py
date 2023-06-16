@@ -15,18 +15,19 @@ class Solution:
             
                 
         stack = []
-        startingPoint = {} # map starting point to ith 
+        startingPoint = [-1] * target # map starting point to ith 
         
         for i in range(len(position)):
             startingPoint[position[i]] = i
+            
+        # print(startingPoint)
+        startingPoint.reverse()
         
-        # Sorting based on the position
-        startingPoint = sorted(startingPoint.items(), reverse=True)
-        
-        for _, i in startingPoint:
-            if not stack or not willTheyMeet(speed[stack[-1]], position[stack[-1]], \
-                                         speed[i], position[i], target):
-                stack.append(i)
+        for i in startingPoint:
+            if i != -1:
+                if not stack or not willTheyMeet(speed[stack[-1]], position[stack[-1]], \
+                                             speed[i], position[i], target):
+                    stack.append(i)
 
                 
         return len(stack)
