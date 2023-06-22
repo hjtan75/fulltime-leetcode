@@ -1,6 +1,7 @@
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         # (index, height)
+        # We want to keep the monotonicly increase stack based on height
         largestArea = 0
         stack = []
         
