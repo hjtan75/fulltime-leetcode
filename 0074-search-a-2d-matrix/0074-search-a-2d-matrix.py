@@ -7,7 +7,6 @@ class Solution:
         midRow = 0
         while top <= bot:
             midRow = int((bot + top) / 2)
-            # print(top, bot)
             if matrix[midRow][-1] >= target and matrix[midRow][0] <= target:
                 break
             elif matrix[midRow][0] > target:
@@ -17,7 +16,6 @@ class Solution:
                 
         if top > bot:
             return False
-        # print(midRow)
         l, r  = 0, len(matrix[midRow]) - 1
         while l <= r:
             midCol = int((l + r) / 2)
