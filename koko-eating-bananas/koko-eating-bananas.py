@@ -9,25 +9,21 @@ class Solution:
             time = 0
             for banana in piles:
                 time += math.ceil(banana/k)
-                # print(k, 'Time added', math.ceil(banana/k))
                 if time > h:
                     return False
-                
+
             return True
 
         l, r = 1, max(piles)
+        res = max(piles)
         while l <= r:
             speed = int((l+r)/2)
-            currentSpeedTest = testSpeed(piles, speed)
-            minusOneSpeedTest = testSpeed(piles, speed - 1)
-            if currentSpeedTest and not minusOneSpeedTest:
-                return speed
-            
-            if currentSpeedTest:
+            if testSpeed(piles, speed):
+                res = min(res, speed)
                 r = speed - 1
             else:
                 l = speed + 1
                 
-        return -1
+        return res
             
                     
