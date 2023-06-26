@@ -18,11 +18,12 @@ class Solution:
         l, r = 1, max(piles)
         while l <= r:
             speed = int((l+r)/2)
-            # print(l, r, speed)
-            if testSpeed(piles, speed) and not testSpeed(piles, speed - 1):
+            currentSpeedTest = testSpeed(piles, speed)
+            minusOneSpeedTest = testSpeed(piles, speed - 1)
+            if currentSpeedTest and not minusOneSpeedTest:
                 return speed
             
-            if testSpeed(piles, speed):
+            if currentSpeedTest:
                 r = speed - 1
             else:
                 l = speed + 1
