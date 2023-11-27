@@ -6,8 +6,15 @@ class Solution:
         for x, y in points:
             distance.append((x**2 + y**2, [x, y]))
 
-        heapq.heapify(distance)
-        for d in heapq.nsmallest(k, distance):
-            res.append(d[1])
+        # heapq.heapify(distance)
+        # for d in heapq.nsmallest(k, distance):
+        #     res.append(d[1])
+        # return res
+
+        distance.sort()
+        for i in range(k):
+            res.append(distance[i][1])
+
+        
         return res
         
