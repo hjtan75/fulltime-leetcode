@@ -18,7 +18,6 @@ class Solution:
                 arr.insert(idx, n)
 
         dfs(arr)
-        print(res)
         return res
 
             
