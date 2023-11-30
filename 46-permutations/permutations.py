@@ -6,7 +6,7 @@ class Solution:
 
         def dfs(arr):
             if len(perm) == len(nums):
-                res.append(perm.copy())
+                res.append(perm[:])
                 return
 
             length = len(arr)
