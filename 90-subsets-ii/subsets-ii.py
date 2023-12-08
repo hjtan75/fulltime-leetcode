@@ -5,7 +5,7 @@ class Solution:
         com = []
         def backtracking(idx):
             if idx == len(nums):
-                res.append(com.copy())
+                res.append(com[:])
                 return
 
             com.append(nums[idx])
