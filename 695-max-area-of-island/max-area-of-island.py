@@ -13,13 +13,17 @@ class Solution:
             return a
 
         def union(a, b):
-            # O(2n)
+            # O(1)
             parent_a = find(a)
             parent_b = find(b)
 
             if parent_a != parent_b:
-                parent[parent_a] = parent_b
-                size[parent_b] = size[parent_b] + size[parent_a] 
+                if size[parent_a] < size[parent_b]:
+                    parent[parent_b] = parent_a
+                    size[parent_a] = size[parent_b] + size[parent_a] 
+                else:
+                    parent[parent_a] = parent_b
+                    size[parent_b] = size[parent_b] + size[parent_a] 
             
         def cell_parsing():
             for i in range(n_row):
