@@ -35,8 +35,6 @@ class Solution:
                                 union(idx, idx - 1)
 
             max_size = 0
-            # print(parent)
-            # print(size)
             for i in range(len(parent)):
                 if i == parent[i] and size[i] > max_size:
                     max_size = size[i]
