@@ -6,6 +6,8 @@ class Solution:
         # Record the number of occurance for two strings
         # Sort two array by the number of occurance
         # if both array are the same then return true else false
+        # ** Because we cannot swap between zero-occurrance with occurred, 
+        # ** we first have to check if we trying to swap between zero-occurance and non-zero occurrance
 
         if len(word1) != len(word2):
             return False
