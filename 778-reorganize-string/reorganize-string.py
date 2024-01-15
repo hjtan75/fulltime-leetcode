@@ -6,6 +6,8 @@ class Solution:
         # Loop until ther are smaller than one item on the heap
         # If the last item has count = 1, add it too ans then return
         # If the last item has count > 1, return ""
+        # Time: O(26log26){heapify} * O(n){every insertion}
+        # Memory: O(n)
 
         cha_cnt = {}
         cnt_heap = []
@@ -29,7 +31,7 @@ class Solution:
                 heapq.heappush(cnt_heap, [cnt1, cha1])
             if cnt2 <= -1:
                 heapq.heappush(cnt_heap, [cnt2, cha2])
-                
+
         if len(cnt_heap) == 1:
             cnt, cha = heapq.heappop(cnt_heap)
             if cnt < -1:
