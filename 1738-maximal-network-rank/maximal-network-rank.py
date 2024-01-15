@@ -26,13 +26,6 @@ class Solution:
         rank_to_pair = sorted(rank_to_pair, reverse=True)
 
         max_rank = 0
-        # for i in range(1, len(rank_to_pair)-1):
-        #     combined_rank = rank_to_pair[0][0] + rank_to_pair[i][0]
-        #     if rank_to_pair[0][1] in rank[rank_to_pair[i][1]]:
-        #         combined_rank -= 1
-
-        #     max_rank = max(max_rank, combined_rank)
-
         for i in range(n):
             if i != 0 and i < i - 1:
                 break
