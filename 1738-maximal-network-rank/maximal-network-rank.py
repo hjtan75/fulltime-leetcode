@@ -27,10 +27,10 @@ class Solution:
 
         max_rank = 0
         for i in range(n):
-            if i != 0 and i < i - 1:
+            if i != 0 and rank_to_pair[i][0] < rank_to_pair[i-1][0] and max_rank > 0:
                 break
             for j in range(i+1, n):
-                if j != 0 and j < j - 1:
+                if j != 0 and rank_to_pair[j][0] < rank_to_pair[j-1][0] and max_rank > 0:
                     break
                 combined_rank = rank_to_pair[i][0] + rank_to_pair[j][0]
                 if rank_to_pair[i][1] in rank[rank_to_pair[j][1]]:
