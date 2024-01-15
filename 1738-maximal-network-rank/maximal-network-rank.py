@@ -34,7 +34,11 @@ class Solution:
         #     max_rank = max(max_rank, combined_rank)
 
         for i in range(n):
+            if i != 0 and i < i - 1:
+                break
             for j in range(i+1, n):
+                if j != 0 and j < j - 1:
+                    break
                 combined_rank = rank_to_pair[i][0] + rank_to_pair[j][0]
                 if rank_to_pair[i][1] in rank[rank_to_pair[j][1]]:
                     combined_rank -= 1
