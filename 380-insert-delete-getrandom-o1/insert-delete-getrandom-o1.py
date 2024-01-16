@@ -1,6 +1,7 @@
 class RandomizedSet:
     # Use a set to record the existed element in the set
-    # Use an array to return random value
+    # Convert set to array when returning a random value from the set
+    
     def __init__(self):
         self.this_set = set()
 
