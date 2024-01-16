@@ -1,7 +1,9 @@
 class RandomizedSet:
-    # Use a set to record the existed element in the set
-    # Convert set to array when returning a random value from the set
-    
+    # Used dictionary to storoe {value, location in the array}
+    # Used a list to store value of the set
+    # To remove and element, we know the index of the element
+    # but to pop at that index, it will take O(n) because of the shift action
+    # We could swap the element with the last element in the array, so that
     def __init__(self):
         self.this_set = set()
 
