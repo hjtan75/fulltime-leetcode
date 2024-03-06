@@ -9,16 +9,21 @@ class Solution:
         # If we are down on power, use point to gain power, starting the last element(most power for least score)
         # if we are down in points, use power to gain score, starting the frist element(1 score for least power)
         # Max-score record the maximum score for each iteration
+        # Time: O(n log n) sorting
+        # Mem: O(1) Two pointer
 
-        score, max_score, sorted_tokens = 0, 0, deque(sorted(tokens))
+        score, max_score, l, r = 0, 0, 0, len(tokens) - 1
+        tokens.sort()
 
-        while len(sorted_tokens) > 0:
-            if power >= sorted_tokens[0]:
+        while l <= r:
+            if power >= tokens[l]:
                 score += 1
-                power -= sorted_tokens.popleft()
+                power -= tokens[l]
+                l += 1
             elif score > 0:
                 score -= 1
-                power += sorted_tokens.pop()
+                power += tokens[r]
+                r -= 1
             else:
                 break
 
