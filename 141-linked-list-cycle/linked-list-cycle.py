@@ -10,7 +10,9 @@ class Solution:
         # One fast pointer and the other one is slow
         # If the fast pointer meet the slow pointer, there is a loop
         # If the fast pointer reachers the end before meeting the slow pointer
-        # There is not loop
+        # WHen the slow ptr enter the loop, no matter where the fast ptr is
+        # The fast pointer will be one place close to the slow pointer
+        # If the difference is distance is 3, the fast ptr will catch to the slow ptr in three iteration
         # Time: O()
         # Memory: O(1)
         if head == None or head.next == None:
