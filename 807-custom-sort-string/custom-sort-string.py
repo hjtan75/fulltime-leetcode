@@ -8,9 +8,7 @@ class Solution:
 
         for alpha in order:
             if alpha in alpha_count:
-                for _ in range(alpha_count[alpha]):
-                    res.append(alpha)
-                del alpha_count[alpha]
+                res.append(alpha * alpha_count.pop(alpha, 0))
 
         for k, v in alpha_count.items():
             for _ in range(v):
