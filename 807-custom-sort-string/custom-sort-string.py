@@ -7,8 +7,7 @@ class Solution:
 
 
         for alpha in order:
-            if alpha in alpha_count:
-                res.append(alpha * alpha_count.pop(alpha, 0))
+            res.append(alpha * alpha_count.pop(alpha, 0))
 
         for k, v in alpha_count.items():
             for _ in range(v):
