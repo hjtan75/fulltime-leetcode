@@ -7,25 +7,19 @@ class Solution:
     def mergeInBetween(self, list1: ListNode, a: int, b: int, list2: ListNode) -> ListNode:
         # Find the reference for a and b
         # Relocate refernce for b-1 to list2, and the end of list2 to b
-        # Edge cases, when a = 0, b = n, a = b
+        # Edge cases, when a = 0, b = n, a = b, not a = 0 or b = 0
         # Time complexity: O(n)
 
-        head = ListNode(0, list1)
-        a_prev_ptr, b_aft_ptr = head, list1
-        list2_end = list2
+        ptr1 = list1
+        for _ in range(a-1):
+            ptr1 = ptr1.next
 
-       
-        while a_prev_ptr and a > 0:
-            a_prev_ptr = a_prev_ptr.next
-            a -= 1
+        ptr2 = ptr1.next
+        for _ in range(b-a+1):
+            ptr2 = ptr2.next
 
-        while b_aft_ptr and b >= 0:
-            b_aft_ptr = b_aft_ptr.next
-            b -= 1
-
-        while list2_end.next:
-            list2_end = list2_end.next
-
-        a_prev_ptr.next = list2
-        list2_end.next = b_aft_ptr
-        return head.next
+        ptr1.next = list2
+        while list2.next:
+            list2 = list2.next
+        list2.next = ptr2
+        return list1
