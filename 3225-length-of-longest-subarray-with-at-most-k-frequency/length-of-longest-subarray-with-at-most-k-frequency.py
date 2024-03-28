@@ -5,6 +5,8 @@ class Solution:
         # if one of the frequncy goes beyond k, strink the window from the left until
         # all element is under k again
         # If all elements frequency is below K, expand window from the right
+        # TC: O(n), because both pointer only will pass througth array once
+        # MC: O(n), the dictionary to record the frequency
         n = len(nums)
         max_len, r, l = 0, 0, 0
         counter = {}
