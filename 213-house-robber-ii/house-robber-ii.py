@@ -23,8 +23,6 @@ class Solution:
         for i in range(4, n):
             dp2[i-1] = max(dp2[i-3], dp2[i-4]) + nums[i]
         
-        print(dp1)
-        print(dp2)
         return max(max(dp1[-1], dp1[-2]), max(dp2[-1], dp2[-2]))
 
 
