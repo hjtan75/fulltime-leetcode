@@ -19,10 +19,10 @@ class Solution:
                 else:
                     arr_l.pop()
 
-        print(arr_l)
-        print(arr_r)
-        for i in range(n):
-            if i not in arr_l and i not in arr_r:
-                res.append(s[i])
+        arr = arr_l + arr_r
+        arr.sort(reverse=True)
+        print(arr)
+        for i in arr:
+            s = s[:i] + s[i+1:]
 
-        return ''.join(res)
+        return s
