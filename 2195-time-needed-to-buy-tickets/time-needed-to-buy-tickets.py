@@ -4,20 +4,16 @@ class Solution:
         # skip element with 0, decreament element > 0
         # Calculate seconds need for position k to be 0
 
-        time = 0
-        idx = 0
         n = len(tickets)
+        queue = [x for x in range(n)]
+        time = 0
+
         while tickets[k] > 0:
-            if idx > n - 1:
-                idx = 0
-                continue
-            if tickets[idx] == 0:
-                idx += 1
-                continue
-            else:
-                tickets[idx] -= 1
-                idx += 1
-                time += 1
+            front_queue = queue.pop(0)
+            tickets[front_queue] -= 1
+            time += 1
+
+            if tickets[front_queue] > 0:
+                queue.append(front_queue)
 
         return time
-        
