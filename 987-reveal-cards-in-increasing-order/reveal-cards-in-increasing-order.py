@@ -8,19 +8,15 @@ class Solution:
         # each parsing will reduce the number by half 
         # MC: O(n)
 
-        deck.sort(reverse=True)
+        deck.sort()
         n = len(deck)
         res = [0] * n
-        skip_flag = False
-
-        while len(deck) > 0:
-            for i in range(n):
-                if res[i] == 0:
-                    if skip_flag:
-                        skip_flag = False
-                        continue
-                    res[i] = deck.pop()
-                    skip_flag = True
-
-        # print(res)
+        qu = deque(range(n))
+     
+        for card in deck:
+            idx = qu.popleft()
+            res[idx] = card
+            if qu:
+                qu.append(qu.popleft())
+                
         return res
