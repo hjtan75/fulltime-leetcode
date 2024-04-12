@@ -1,30 +1,30 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-    # One arrive a i, need to find element afte i which has height the same or higher than i
-    # How do we know whether for x > i, is there any height[x] > height[i]
-    # The brute force method would be, for every i, we look entire list to find height
-    # This will TC: O(n)
-    # Create an array indicating the next hightest point after i 
+        # There are two solution, both require TC: O(n)
+        # First soluion: MC: O(n)
+        # Create two array, each indicating the maximum height from the left and right
+        # Find the minumum between two direction and subtract the current height
 
-        if not height:
-            return 0
-        
+        # Second solution: MC: O(1)
+        # Create two pointer indicate the left and the maximum height
+        # If leftMax > rightMax, meaning that for i which rightMax - 1 is always bound by the rightMax
+        # So set water of rightMax - 1 = rightMax - height[i]
+        # Vice versa
+
         l, r = 0, len(height) - 1
-        leftMax, rightMax = height[l], height[r]
-        res = 0
-        
+        res, maxLeft, maxRight = 0, height[l], height[r]
+
         while l < r:
-            if leftMax < rightMax:
+            if maxLeft < maxRight:
                 l += 1
-                leftMax = max(leftMax, height[l])
-                res += leftMax - height[l]
+                maxLeft = max(maxLeft, height[l])
+                res += maxLeft - height[l]
             else:
                 r -= 1
-                rightMax = max(rightMax, height[r])
-                res += rightMax - height[r]
-                
+                maxRight = max(maxRight, height[r])
+                res += maxRight - height[r]
+
         return res
-                
             
         
         
