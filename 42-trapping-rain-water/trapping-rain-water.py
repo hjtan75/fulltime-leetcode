@@ -6,26 +6,28 @@ class Solution:
     # This will TC: O(n)
     # Create an array indicating the next hightest point after i 
 
-        n = len(height)
+        if not height:
+            return 0
+        
+        l, r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
         res = 0
-        idx = 0
-        rMax, lMax = [0] * n, [0] * n
-
-        cur_max = 0
-        for i in range(n):
-            cur_max = max(cur_max, height[i])
-            lMax[i] = cur_max
-
-        cur_max = 0
-        for i in range(n-1, -1, -1):
-            cur_max = max(cur_max, height[i])
-            rMax[i] = cur_max
-
-        for i in range(n):
-            res += min(rMax[i], lMax[i]) - height[i]
-
+        
+        while l < r:
+            if leftMax < rightMax:
+                l += 1
+                leftMax = max(leftMax, height[l])
+                res += leftMax - height[l]
+            else:
+                r -= 1
+                rightMax = max(rightMax, height[r])
+                res += rightMax - height[r]
+                
         return res
-
+                
+            
+        
+        
 
             
         
