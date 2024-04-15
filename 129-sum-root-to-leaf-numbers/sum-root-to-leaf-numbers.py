@@ -7,22 +7,20 @@
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         self.res = 0
-        num = []
+        self.num = ''
 
         def dfs(node):
-            num.append(node.val)
+            self.num += str(node.val)
             if not node.right and not node.left:
-                s = ''.join(map(str, num))
-                print(s)
-                self.res += int(s)
-                num.pop()
+                self.res += int(self.num)
+                self.num = self.num[:-1]
                 return
 
             if node.left:
                 dfs(node.left)
             if node.right:
                 dfs(node.right)
-            num.pop()
+            self.num = self.num[:-1]
             return
 
         if not root:
