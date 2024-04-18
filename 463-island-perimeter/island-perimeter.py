@@ -1,25 +1,25 @@
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
+        # Appoarch 1: DFS
         # search for the first piece of land
         # expand the search recursivly, if the direction have no expansion, return 1 as the side
         # Marked the land -1 after it's visited
+        # TC: O(n), MC: O(n)
+
+        # Appoarch 2: Counting
+        # if land == 1, perimeter += 1
+        # If the upper or left land of the current area is land
+        # We must subtract perimeter -2 because one side of neighbor and one side of current does not count
         row, col = len(grid), len(grid[0])
-        visited = [[False]*col for _ in range(row)]
-
-        def explore(i, j):
-            print(i, j)
-            if i < 0 or i >= row or j < 0 or j >= col or grid[i][j] == 0:
-                return 1
-
-            if grid[i][j] == -1:
-                return 0
-
-            grid[i][j] = -1
-            return explore(i+1, j) + explore(i-1, j) + explore(i, j+1) + explore(i, j-1)
+        perimeter = 0
 
         for i in range(row):
             for j in range(col):
                 if grid[i][j] == 1:
-                    return explore(i, j)
+                    perimeter += 4
+                    if i > 0 and grid[i-1][j] == 1:
+                        perimeter -= 2
+                    if j > 0 and grid[i][j-1] == 1:
+                        perimeter -= 2
 
-        return 0 
+        return perimeter
