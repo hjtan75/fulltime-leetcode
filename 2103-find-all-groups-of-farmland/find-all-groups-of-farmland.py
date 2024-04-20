@@ -12,6 +12,13 @@ class Solution:
         # One farmland is encountered, explore it using dfs
         # until the last corner is found
 
+        # Approach 3
+        # Similar to approach 1, but instead comparing the current's cell left and upper cell
+        # we try to expand the rectangular as big as possible
+        # Than mark all element in the rectagle to as visited 
+        # This we could eliminate of using a dictinary and 3D array to mark visited
+        # We also save time on converting dictionary to array for return
+
         n, m = len(land), len(land[0])
         res = []
         visited = [[False for _ in range(m)] for _ in range(n)]
