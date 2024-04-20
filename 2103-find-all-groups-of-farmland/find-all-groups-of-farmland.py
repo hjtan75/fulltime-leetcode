@@ -13,41 +13,27 @@ class Solution:
         # until the last corner is found
 
         n, m = len(land), len(land[0])
-        visited = [[False for k in range(m)] for j in range(n)]
         res = []
+        visited = [[False for _ in range(m)] for _ in range(n)]
 
-        def explore(i, j):
-            if visited[i][j] or land[i][j] == 0:
-                return None
-            
-            r_1, c_1 =  i, j
-            r_2, c_2 = dfs(i, j)
-            return [r_1, c_1, r_2, c_2]
-            
-
-        def dfs(i, j):
-            if visited[i][j] or land[i][j] == 0:
-                return None
-            
-            visited[i][j] = True
-            d1, d2 = None, None
-            if i < n-1:
-                d1 = dfs(i+1, j)
-            if j < m-1:
-                d2 = dfs(i, j+1)
-
-            if not d1 and not d2:
-                return [i, j]
-            elif d1 == None:
-                return d2
-            else:
-                return d1
-            
         for i in range(n):
             for j in range(m):
-                coord = explore(i, j)
-                if coord != None:
-                    res.append(coord)
+                if land[i][j] == 1 and not visited[i][j]:
+                    r_1, c_1 = i, j
+                    r_2, c_2 = i, j
+                    while r_2 < n - 1 and land[r_2+1][j] == 1:
+                        r_2 += 1
+                    while c_2 < m - 1 and land[i][c_2+1] == 1:
+                        c_2 += 1
+
+                    for r in range(r_1, r_2+1):
+                        for c in range(c_1, c_2+1):
+                            visited[r][c] = True
+                    
+                    res.append([r_1, c_1, r_2, c_2])
+
+                visited[i][j] = True
 
         return res
+    
 
