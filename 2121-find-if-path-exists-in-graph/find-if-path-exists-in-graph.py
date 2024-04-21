@@ -35,6 +35,6 @@ class Solution:
         for s, d in edges:
             merge(s, d)
 
-        # print(arr)
-        # print(depth)
+        print(arr)
+        print(depth)
         return identify(source, destination)
