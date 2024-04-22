@@ -11,6 +11,7 @@ class Solution:
         self.target = target
         self.step = -1
         self.bfs_arr_0, self.bfs_arr_1 = [], ['0000']
+        self.de = set(deadends)
         visited = [False] * 10000
 
         def bfs():
@@ -23,7 +24,7 @@ class Solution:
                     s = self.bfs_arr_0.pop(0)
                     num = int(s)
             
-                    if s in deadends or visited[num]:
+                    if s in self.de or visited[num]:
                         continue
                     if s == target:
                         return self.step
@@ -34,31 +35,18 @@ class Solution:
                     d2 = int(s[2])
                     d1 = int(s[3])
 
-                    # print(d1, d2, d3, d4)
-
                     if d1 == 0:
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, d2, 9])))
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, d2, 1])))
-                        # print(''.join(map(str, [d4, d3, d2, 9])))
-                        # print(''.join(map(str, [d4, d3, d2, 1])))
                     else:
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, d2, (d1+1) % 10])))
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, d2, d1-1])))
-                    #     print(''.join(map(str, [d4, d3, d2, (d1+1) % 10])))
-                    #     print(''.join(map(str, [d4, d3, d2, d1-1])))
-                    # print(d1, d2, d3, d4)
                     if d2 == 0:
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, 9, d1])))
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, 1, d1])))
-                        # print(''.join(map(str, [d4, d3, 9, d1])))
-                        # print(''.join(map(str, [d4, d3, 1, d1])))
                     else:
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, (d2+1) % 10, d1])))
                         self.bfs_arr_1.append(''.join(map(str, [d4, d3, d2-1, d1])))
-                    #     print(''.join(map(str, [d4, d3, (d2+1) % 10, d1])))
-                    #     print(''.join(map(str, [d4, d3, d2-1, d1])))
-
-                    # print(d1, d2, d3, d4)
                     if d3 == 0:
                         self.bfs_arr_1.append(''.join(map(str, [d4, 9, d2, d1])))
                         self.bfs_arr_1.append(''.join(map(str, [d4, 1, d2, d1])))
