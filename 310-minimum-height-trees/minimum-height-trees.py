@@ -32,14 +32,13 @@ class Solution:
             degree[v] += 1
 
         leaves = deque([idx for idx, val in enumerate(degree) if val == 1])
-        # print(degree)
-        # print(leaves)
-        while len(adjacent_list) > 2:
+        remaining_nodes = n
+        while remaining_nodes > 2:
             num_leaves = len(leaves)
+            remaining_nodes -= num_leaves
             for _ in range(num_leaves):
                 leaf = leaves.popleft()
                 for parent in adjacent_list[leaf]:
-                    leaf_parent = adjacent_list[leaf]
                     adjacent_list[parent].remove(leaf)
                     degree[parent] -= 1
                     if degree[parent] == 1:
