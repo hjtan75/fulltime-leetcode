@@ -39,7 +39,7 @@ class Solution:
             for _ in range(num_leaves):
                 leaf = leaves.popleft()
                 for parent in adjacent_list[leaf]:
-                    adjacent_list[parent].remove(leaf)
+                    # adjacent_list[parent].remove(leaf)
                     degree[parent] -= 1
                     if degree[parent] == 1:
                         leaves.append(parent)
