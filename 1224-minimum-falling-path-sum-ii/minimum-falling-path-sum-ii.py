@@ -6,7 +6,7 @@ class Solution:
         # return the minimum on the last row
         n = len(grid)
         dp = [[0 for _ in range(n)] for _ in range(n)]
-        print(n)
+        # print(n)
         for j in range(n):
             dp[0][j] = grid[0][j]
 
@@ -26,7 +26,7 @@ class Solution:
                     min2_val = dp[i-1][j]
                     min2_idx = j
 
-            print(min1_val, min2_val)
+            # print(min1_val, min2_val)
             for j in range(n):
                 if j != min1_idx:
                     dp[i][j] = grid[i][j] + min1_val
