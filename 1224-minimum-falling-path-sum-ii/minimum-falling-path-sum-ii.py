@@ -17,16 +17,13 @@ class Solution:
             min2_idx = 0
             for j in range(n):
                 if dp[i-1][j] < min1_val:
+                    min2_val = min1_val
+                    min2_idx = min1_idx
                     min1_val = dp[i-1][j]
                     min1_idx = j
-                # if i == 3:
-                #     print("-", min1_val)
-            for j in range(n):
-                if dp[i-1][j] < min2_val and j != min1_idx:
+                elif dp[i-1][j] < min2_val:
                     min2_val = dp[i-1][j]
                     min2_idx = j
-
-            # print(min1_val, min2_val)
             for j in range(n):
                 if j != min1_idx:
                     dp[i][j] = grid[i][j] + min1_val
