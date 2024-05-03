@@ -8,23 +8,21 @@ class Solution:
         n_1, n_2 = len(version1), len(version2)
 
         while idx_1 < n_1 or idx_2 < n_2:
-            arr_1, arr_2 = ['0'], ['0']
-            while idx_1 < n_1 and version1[idx_1] != '.':
-                arr_1.append(version1[idx_1])
-                idx_1 += 1
+            len_1, len_2 = 0, 0
+            while idx_1 + len_1 < n_1 and version1[idx_1 + len_1] != '.':
+                len_1 += 1
 
-            while idx_2 < n_2 and version2[idx_2] != '.':
-                arr_2.append(version2[idx_2])
-                idx_2 += 1
+            while idx_2 + len_2 < n_2 and version2[idx_2 + len_2] != '.':
+                len_2 += 1
 
-            devision_1 = int(''.join(arr_1))
-            devision_2 = int(''.join(arr_2))
+            devision_1 = int('0' + version1[idx_1:idx_1+len_1])
+            devision_2 = int('0' + version2[idx_2:idx_2+len_2])
             if devision_1 < devision_2:
                 return -1
             elif devision_2 < devision_1:
                 return 1
             else:
-                idx_1 += 1
-                idx_2 += 1
+                idx_1 += len_1 + 1
+                idx_2 += len_2 + 1
 
         return 0 
