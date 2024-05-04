@@ -9,7 +9,7 @@ class Solution:
         res = 0
 
         while l <= r:
-            print(l, r, people[l] + people[r])
+            # print(l, r, people[l] + people[r])
             if l == r:
                 res += 1
                 break
