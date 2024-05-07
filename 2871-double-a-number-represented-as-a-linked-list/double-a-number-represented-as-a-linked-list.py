@@ -3,32 +3,24 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-sys.set_int_max_str_digits(0)
 class Solution:
     def doubleIt(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        num = 0
-        cur = head
+        # We can use reversing the stack, but it's very troublesome
+        # The other method we can use recursive, returning any carry to the previous node
 
-        while cur:
-            num *= 10
-            num += cur.val
-            cur = cur.next
+        def double_num(node):
+            if not node:
+                return 0
 
-        num *= 2
-        num = str(num)
-        cur = head
-        prev = ListNode(val=-1, next=head)
-       
-        for n in num:
-            if cur:
-                cur.val = int(n)
-                prev = cur
-                cur = cur.next
-            else:
-                prev.next = ListNode(val=int(n))
-                prev = prev.next
+            digit = (node.val * 2) + double_num(node.next)
+            node.val = digit % 10
+            return digit // 10
 
-        return head
+        carry = double_num(head)
+        if carry > 0:
+            return ListNode(val=carry, next=head)
+        else:
+            return head
 
 
 
