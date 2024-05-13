@@ -15,6 +15,7 @@ class Solution:
                     rotten_oranges_2.append([i, j])
 
         while len(rotten_oranges_2) != 0:
+            minute += 1
             rotten_oranges_1, rotten_oranges_2 = rotten_oranges_2, rotten_oranges_1
             while rotten_oranges_1:
                 i, j = rotten_oranges_1.pop()
@@ -34,7 +35,7 @@ class Solution:
                     rotten_oranges_2.append([i, j+1])
                     grid[i][j+1] = 2
 
-            minute += 1
+            
 
         for i in range(n):
             for j in range(m):
