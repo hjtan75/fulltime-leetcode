@@ -14,7 +14,6 @@ class Solution:
             row_mask += 1
 
         for i in range(n):
-
             if grid[i][0] == 0:
                 for j in range(m):
                     grid[i][j] = 1 - grid[i][j]
