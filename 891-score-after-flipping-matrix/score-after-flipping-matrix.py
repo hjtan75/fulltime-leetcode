@@ -14,8 +14,6 @@ class Solution:
             row_mask += 1
 
         for i in range(n):
-            # num = int(''.join(map(str, grid[i])), 2)
-            # nega = num ^ row_mask
 
             if grid[i][0] == 0:
                 for j in range(m):
