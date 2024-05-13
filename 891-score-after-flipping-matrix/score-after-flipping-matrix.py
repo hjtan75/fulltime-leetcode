@@ -14,12 +14,10 @@ class Solution:
             row_mask += 1
 
         for i in range(n):
-            num = int(''.join(map(str, grid[i])), 2)
-            nega = num ^ row_mask
+            # num = int(''.join(map(str, grid[i])), 2)
+            # nega = num ^ row_mask
 
-            # print(num, nega)
-
-            if nega > num:
+            if grid[i][0] == 0:
                 for j in range(m):
                     grid[i][j] = 1 - grid[i][j]
 
