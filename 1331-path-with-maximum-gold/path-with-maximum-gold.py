@@ -21,6 +21,21 @@ class Solution:
             visited[i][j] = False
             return max_return + grid[i][j]
 
+        opti = 0
+        flag = False
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 0:
+                    flag = True
+                else:
+                    opti += grid[i][j]
+
+            if flag:
+                break
+
+        if not flag:
+            return opti
+
         for i in range(n):
             for j in range(m):
                 visited = [[False for _ in range(m)] for _ in range(n)]
