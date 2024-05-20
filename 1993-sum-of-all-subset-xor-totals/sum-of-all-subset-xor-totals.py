@@ -4,21 +4,15 @@ class Solution:
         self.res = 0
 
 
-        def dfs(curr_loc, current_list):
+        def dfs(curr_loc, res):
             if curr_loc >= self.len_nums:
-                ans = 0
-                for num in current_list:
-                    ans ^= num
-                self.res += ans
-                return
+                return res
 
-            current_list.append(nums[curr_loc])
-            dfs(curr_loc+1, current_list)
-            current_list.pop()
-            dfs(curr_loc+1, current_list)
+            include = dfs(curr_loc+1, res ^ nums[curr_loc])
+            exclude = dfs(curr_loc+1, res)
+            return include + exclude
 
-
-        dfs(0, [])
-        return self.res
+        
+        return dfs(0, 0)
 
 
