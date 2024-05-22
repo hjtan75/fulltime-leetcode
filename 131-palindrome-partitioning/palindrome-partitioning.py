@@ -1,5 +1,6 @@
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
+        # O(n^n)
         res, par = [], []
 
         def dfs(idx):
