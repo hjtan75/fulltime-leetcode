@@ -18,13 +18,13 @@ class Solution:
 
         for i in range(n):
             diff[i] = abs(ord(s[i]) - ord(t[i]))
-        print(diff)
+        # print(diff)
         l, r = 0, 0
         cost, max_length = 0, 0
         while r < n:
             cost += diff[r]
             if cost <= maxCost:
-                print(l, r, cost)
+                # print(l, r, cost)
                 max_length = max(max_length, r-l+1)
                 r += 1
             else:
