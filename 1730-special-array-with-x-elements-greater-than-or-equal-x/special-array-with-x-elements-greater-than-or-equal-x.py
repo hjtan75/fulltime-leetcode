@@ -32,9 +32,6 @@ class Solution:
                     l_num = m_num + 1
             
             num_bigger = len(nums) - m_num
-            # print('chosen x:', l, r, m)
-            # print(l_num, r_num, m_num)
-            # print(num_bigger)
             if num_bigger == m:
                 return m
             elif num_bigger > m:
