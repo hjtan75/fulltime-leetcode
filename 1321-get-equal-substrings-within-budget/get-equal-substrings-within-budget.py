@@ -14,34 +14,21 @@ class Solution:
         # SC: O(n) Array to store the difference
 
         n = len(s)
-        diff = [0] * n
-
-        for i in range(n):
-            diff[i] = abs(ord(s[i]) - ord(t[i]))
-        # print(diff)
         l, r = 0, 0
         cost, max_length = 0, 0
         while r < n:
-            cost += diff[r]
-            if cost <= maxCost:
-                # print(l, r, cost)
-                max_length = max(max_length, r-l+1)
-                r += 1
-            else:
-                cost -= diff[l]
-                cost -= diff[r]
+            cost += abs(ord(s[r]) - ord(t[r]))
+            
+            while cost > maxCost:
+                cost -= abs(ord(s[l]) - ord(t[l]))
                 l += 1
-                if l > r:
-                    cost += diff[r]
-                    r = l
+
+            max_length = max(max_length, r-l+1)
+            r += 1
                     
 
         return max_length
 
-            
-
-
-        return max_length
 
 
 
