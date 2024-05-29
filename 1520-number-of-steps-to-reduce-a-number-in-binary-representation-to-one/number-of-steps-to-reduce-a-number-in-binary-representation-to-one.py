@@ -8,27 +8,22 @@ class Solution:
         # if it is 1, add 1 to the next available zero, the frequency of 1 coontingous to the number of 
         # step. beause it would be zero and we can divide it anyway
 
-        arr = [c for c in s]
-        step = 0
-        
-        while len(arr) > 1:
-            print(arr)
-            while len(arr) > 1 and arr[-1] == '0':
+        carry, step = False, 0
+        l = len(s) -1 
+        while l > 0:
+            if int(s[l]) + carry == 0:
+                carry = 0
                 step += 1
-                arr.pop()
-
-            if len(arr) == 1:
-                break
-
-            while len(arr) >= 1 and arr[-1] == '1':
-                print('enter')
+            elif int(s[l]) + carry == 2:
+                carry = 1
                 step += 1
-                arr.pop()
-            
-            if len(arr) == 0:
-                arr.append('1')
             else:
-                arr[-1] = '1'
+                carry = 1
+                step += 2
+            l -= 1
+
+        if carry == 1:
             step += 1
 
         return step
+        
