@@ -23,7 +23,6 @@ class Solution:
         for i in range(n+1):
             for j in range(i+1, n+1):
                 if prefix[i] ^ prefix[j] == 0:
-                    print(i, j)
                     res += j - i - 1
 
         return res
