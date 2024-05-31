@@ -23,13 +23,15 @@ class Solution:
                 break
             diff_idx += 1
 
-        if tmp >= 0 :
-            # Both is possive or both negative
+        print(diff_idx)
+        if tmp > 0 :
             for n in nums:
                 if n & (1 << diff_idx) == 0:
                     group_0 ^= n
                 else:
                     group_1 ^= n
+
+                print(group_0, group_1)
         else:
             for n in nums:
                 if n >= 0:
