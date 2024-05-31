@@ -13,13 +13,8 @@ class Solution:
         # because we could get the parent of the deleted node
         # we could only change the value of the current node to the next node
         # then delete the last node
+        node.val = node.next.val
+        node.next = node.next.next
 
-        prev = None
-        while node.next:
-            node.val = node.next.val
-            prev = node
-            node = node.next
-
-        prev.next = None
 
         
