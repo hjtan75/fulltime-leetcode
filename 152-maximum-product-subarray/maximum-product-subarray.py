@@ -17,17 +17,18 @@ class Solution:
         # The edge case is zero, when we encounter a zero, reset min, max to 0
         
         mini, maxi = 1, 1
-        res = max(nums)
+        res = -11
 
         for n in nums:
             if n == 0:
                 mini, maxi = 1, 1
+                res = max(res, 0)
                 continue
 
             tmp = maxi * n
             maxi = max(maxi*n, mini*n, n)
             mini = min(tmp, mini*n, n)
-            res = max(res, maxi)
+            res = max(res, maxi, n)
 
         return res
             
