@@ -24,7 +24,7 @@ class Solution:
             diff_idx += 1
 
         print(diff_idx)
-        if tmp > 0 :
+        if tmp >= 0 :
             for n in nums:
                 if n & (1 << diff_idx) == 0:
                     group_0 ^= n
