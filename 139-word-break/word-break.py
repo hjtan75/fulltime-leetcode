@@ -5,7 +5,7 @@ class Solution:
 
         # This is a dynamic prograaming question, so i should store the previous result
         
-        # I wanted to use a dicision tree mehod
+       
         n = len(s)
         dp = [False] * (n+1)
         dp[0] = True
