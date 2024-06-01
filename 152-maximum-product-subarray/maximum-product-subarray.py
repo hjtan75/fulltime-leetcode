@@ -1,36 +1,36 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        # The brute force method would be parsing every single possible subarray
-        # then perform multiplcation O(n)
-        # TC: O(n^3)
-        
-        # Another method would be to use prefix product
-        # Create any array with a a prefix product
-        # Find the every possible i and j then use it to find the multiplication with only O(1)
-        # TC: O(n^2)
+        # The brute force method would be to find the product of every possible subarray
+        # For every i, we find the product from i to j where j < n
+        # Because we can find the product after by just multiplying the last element
+        # TC: O(n^2), every possible subarray
+        # SC: O(1)
 
-        # we use dynamic programming method. 
-        # At each subarray, the result will depend on the previous subarray
-        # Because of negative number will convert smallest number to the largest
-        # we need to remember max and min for each subarray
-        # the min will come in handy when negative number is encountered
-        # The edge case is zero, when we encounter a zero, reset min, max to 0
-        
-        mini, maxi = 1, 1
+        # Optimized method
+        # We know that if the element only consist of element which are possitive
+        # We maximum product is just the product of the entire array
+        # We know that a negative sign would make a negative value value very large
+        # Besides marking the largest product in the previous subarray,
+        # we need to also store the smallest product of the previous array
+        # Because it could turn very big when we encounter a negative value
+        # The big problem currently is zero, anything multply by it would be zero
+        # that will ruin out max and min variable
+        # so when 0 is encountered, we reset the max and min to be 1, but do not considered that
+        # into the the maximum product because 1 might never existed
+
         res = -11
+        cur_max, cur_min = 1, 1
 
         for n in nums:
             if n == 0:
-                mini, maxi = 1, 1
-                res = max(res, 0)
+                cur_max, cur_min = 1, 1
+                res = max(res, n)
                 continue
 
-            tmp = maxi * n
-            maxi = max(maxi*n, mini*n, n)
-            mini = min(tmp, mini*n, n)
-            res = max(res, maxi, n)
+            tmp = n * cur_max
+            cur_max = max(n * cur_max, n * cur_min, n)
+            cur_min = min(tmp, n * cur_min, n)
+
+            res = max(res, cur_max, n)
 
         return res
-            
-
-        
