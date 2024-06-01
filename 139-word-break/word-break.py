@@ -15,5 +15,6 @@ class Solution:
                 for w in wordDict:
                     if i + len(w) <= n and s[i:i+len(w)] == w:
                         dp[i + len(w)] = dp[i]
-
-        return dp[n]
+            if dp[n]:
+                return True
+        return False
