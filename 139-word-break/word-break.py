@@ -5,17 +5,15 @@ class Solution:
 
         # This is a dynamic prograaming question, so i should store the previous result
         
+        # I wanted to use a dicision tree mehod
         n = len(s)
         dp = [False] * (n+1)
-        dp[n] = True # because empty string would match character
+        dp[0] = True
 
-        for i in range(n-1, -1, -1):
-            for w in wordDict:
-                if len(w) + i <= n and s[i: i + len(w)] == w:
-                    dp[i] = dp[i + len(w)]
+        for i in range(n):
+            if dp[i]:
+                for w in wordDict:
+                    if i + len(w) <= n and s[i:i+len(w)] == w:
+                        dp[i + len(w)] = dp[i]
 
-                if dp[i]:
-                    break
-            
-        print(dp)
-        return dp[0] 
+        return dp[n]
