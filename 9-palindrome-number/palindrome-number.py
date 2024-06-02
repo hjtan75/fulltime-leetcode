@@ -6,17 +6,11 @@ class Solution:
         if x < 0:
             return False 
 
-        arr = []
+        x_copy = x
+        x_reverse = 0
+
         while x > 0:
-            arr.append(x % 10)
+            x_reverse = (x_reverse * 10) + (x % 10)
             x = x // 10
 
-        i, j = 0, len(arr) - 1
-        while i < j:
-            if arr[i] == arr[j]:
-                i += 1
-                j -= 1
-            else:
-                return False
-
-        return True
+        return x_copy == x_reverse
