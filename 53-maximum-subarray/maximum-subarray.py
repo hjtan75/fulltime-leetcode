@@ -6,17 +6,20 @@ class Solution:
         # At every cell could make a decision, it could be added to the previous array
         # Or the start from the cell. WE make this decision by each value
         # Then in every iteration, we compare to the maximum
+        # TC: O(n)
+        # SC: O(1)
 
-        cur_max = -1000000001
-        res = -1000000001
+        cur_max = nums[0]
+        res = nums[0]
+        n = len(nums)
 
-        for n in nums:
-            if n > n + cur_max:
-                cur_max = n
+        for i in range(1, n):
+            if nums[i] > nums[i] + cur_max:
+                cur_max = nums[i]
             else:
-                cur_max += n
+                cur_max += nums[i]
 
-            res = max(cur_max, res, n)
+            res = max(cur_max, res)
 
         return res
         
