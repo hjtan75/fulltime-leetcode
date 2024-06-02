@@ -44,15 +44,15 @@ class Solution:
                 
             if nums[m] > nums[l] and nums[m] > nums[r]:
                 if nums[m+1] > nums[m]:
-                    l = m + 1
+                    l = m
                 else:
-                    r = m - 1
+                    r = m
             elif nums[m] <= nums[l] and nums[m] <= nums[r]:
-                l = m + 1
+                l = m
             else:
                 if nums[l] > nums[r]:
-                    r = m - 1
+                    r = m
                 else:
-                    l = m + 1
+                    l = m
 
 
