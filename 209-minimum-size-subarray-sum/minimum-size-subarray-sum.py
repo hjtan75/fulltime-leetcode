@@ -17,7 +17,7 @@ class Solution:
 
         start, end = 0, 0
         summ = 0
-        min_length = len(nums)
+        min_length = len(nums) + 1 
 
         while start < len(nums) and end < len(nums):
             while end < len(nums) and summ < target:
@@ -28,6 +28,9 @@ class Solution:
                 min_length = min(min_length, end - start)
                 summ -= nums[start]
                 start += 1
+
+        if min_length == len(nums) + 1:
+            return 0
             
         return min_length
 
