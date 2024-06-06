@@ -15,33 +15,18 @@ class Solution:
             return False
 
         counter = {}
-        distinct_arr = []
         for card in hand:
-            if card in counter:
-                counter[card] += 1
-            else:
-                counter[card] = 1
-                distinct_arr.append(card)
+            counter[card] = counter.get(card, 0) + 1
 
-        distinct_arr = sorted(distinct_arr, reverse=True)
-        while len(distinct_arr) > 0:
-            stack_len, stack_val = 0, 0
-            while stack_len < groupSize:
-                if stack_len == 0:
-                    if len(distinct_arr) == 0:
+        distinct_arr = sorted(counter.keys())
+        
+        for key in distinct_arr:
+            if counter[key] > 0:
+                freq = counter[key]
+                for i in range(key, key + groupSize):
+                    if i not in counter or counter[i] < freq:
                         return False
-                    stack_val = distinct_arr[-1]
-                else:
-                    if (stack_val + 1) not in counter or counter[stack_val + 1] == 0:
-                        return False
-                    else:
-                        stack_val += 1
-
-                counter[stack_val] -= 1
-                stack_len += 1
-                if counter[stack_val] == 0:
-                    distinct_arr.pop()
-
+                    counter[i] -= freq
         return True
 
 
