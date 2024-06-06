@@ -19,22 +19,26 @@ class Solution:
 
         hand = sorted(hand)
         while len(hand) > 0:
-            i = 0
-            stack_len, stack_val = 0, 0
-            while i < len(hand) and stack_len < groupSize:
-                if stack_len == 0 or hand[i] == stack_val + 1:
-                    stack_val = hand[i]
-                    stack_len += 1
-                    del hand[i]
-                elif hand[i] <= stack_val:
-                    i += 1
-                else:
-                    print('a')
-                    return False
+            stack_len, stack_val = 1, hand[0]
+            del hand[0]
+            while stack_len < groupSize:
+                target = stack_val + 1
+                l, r = 0, len(hand) - 1
+                while l <= r:
+                    m = (l+r) // 2
+                    if hand[m] == target:
+                        stack_val = target
+                        stack_len += 1
+                        del hand[m]
+                        break
+                    elif hand[m] > target:
+                        r = m - 1
+                    else:
+                        l = m + 1
 
-            if stack_len != groupSize:
-                print("b")
-                return False
+                # Can't find target
+                if l > r:
+                    return False
 
         return True
 
