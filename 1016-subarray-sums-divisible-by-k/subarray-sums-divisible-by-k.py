@@ -22,19 +22,16 @@ class Solution:
         # Edge case, we add remainder to 0 with count 1 so means that the entire array
         # from 0 to current location has the sum that is divisible by k
 
-        count = 0
+        res = 0
+        prefix_cnt = {0:1}
         prefix_sum = 0
-        prefix_map = {0: 1}  
-        
         for num in nums:
             prefix_sum += num
-            mod = prefix_sum % k
-            if mod < 0:  
-                mod += k
-            if mod in prefix_map:
-                count += prefix_map[mod]
-                prefix_map[mod] += 1
-            else:
-                prefix_map[mod] = 1
-        
-        return count
+            remainder = prefix_sum % k
+
+            if remainder in prefix_cnt:
+                res += prefix_cnt[remainder]
+                
+            prefix_cnt[remainder] = prefix_cnt.get(remainder, 0) + 1
+
+        return res
