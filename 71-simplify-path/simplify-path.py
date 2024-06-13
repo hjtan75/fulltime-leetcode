@@ -5,17 +5,32 @@ class Solution:
         # Tc: O(n) because split operation need O(n)
         # SP: O(n) n is number of character in path
 
-        st = path.split('/')
-        output = []
+        dir_stack, output = [], []
+        for c in path:
+            if c == '/':
+                if len(dir_stack) > 0:
+                    d = ''.join(dir_stack)
+                    dir_stack = []
+                    if '.' == d:
+                        continue
+                    elif '..' == d:
+                        if len(output) > 0:
+                            output.pop()
+                    else:
+                        output.append(d)
+            else:
+                dir_stack.append(c)
 
-        for s in st:
-            if s == '..':
+        if len(dir_stack) > 0:
+            d = ''.join(dir_stack)
+            if '.' == d:
+                pass
+            elif '..' == d:
                 if len(output) > 0:
                     output.pop()
-            elif s == '.' or s == '':
-                continue
             else:
-                output.append(s)
+                output.append(d)
+
 
         return '/' + '/'.join(output)
 
