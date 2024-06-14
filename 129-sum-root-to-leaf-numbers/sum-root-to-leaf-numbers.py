@@ -6,24 +6,30 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        self.res = 0
+        # Use dfs to parse down the three, in every non lead node we append the value to an array
+        # On the leaf node cast the the number to an integer and return the number 
+        # on every return in then non leaf node, add the value from right and left child then return
 
-        def dfs(node, path_sum):
-            path_sum = path_sum * 10 + node.val
-            if not node.right and not node.left:
-                self.res += path_sum
-                path_sum /= 10
-                return
+        def dfs(node, arr):
+            if node.left == None and node.right == None:
+                res = 0
+                for val in arr:
+                    res *= 10
+                    res += val
 
+                res *= 10
+                res += node.val
+                return res
+
+            left = 0
+            right = 0
+            arr.append(node.val)
             if node.left:
-                dfs(node.left, path_sum)
+                left = dfs(node.left, arr)
             if node.right:
-                dfs(node.right, path_sum)
-            path_sum /= 10
-            return
+                right = dfs(node.right, arr)
 
-        if not root:
-            return self.res
+            arr.pop()
+            return left + right
 
-        dfs(root, 0)
-        return self.res
+        return dfs(root, [])
