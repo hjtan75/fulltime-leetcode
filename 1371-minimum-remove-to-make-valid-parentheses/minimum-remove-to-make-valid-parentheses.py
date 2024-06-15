@@ -1,28 +1,30 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        # Array to markdown location of '(',
-        # When encounter a ')', pop from array,
-        # If array is empty, remove ')'
-        # Remove all leftover '(' after parsing the string
-        # TC: O(n), will parse the string twice, one for checking paranthesis, the other for passing strings
-        # MC: O(n), memory need to transfer string and array
+        # The intuition is to use a stack to mark idx of open paranthesis
+        # When we sees a close paranthesis, when stack is empty, pop from stack
+        # if not remove the close paranthesis
+        # If finish iterating all of s, delete all remainding open paranthesis in the element
+        # TC: O(n) iterate through the array
+        # SP: O(n) for the stack
 
-        arr_l, arr_r, n = [], [], len(s)
-        res = []
-
-        for i in range(n):
-            if s[i] == '(':
-                arr_l.append(i)
-            elif s[i] == ')':
-                if len(arr_l) == 0:
-                    arr_r.append(i)
+        stack = []
+        res = [c for c in s]
+        i = 0
+        while i < len(res):
+            if res[i] == '(':
+                stack.append(i)
+                i += 1
+            elif res[i] == ')':
+                if len(stack) == 0:
+                    del res[i]
                 else:
-                    arr_l.pop()
+                    stack.pop()
+                    i += 1
+            else:
+    
+                i += 1
 
-        arr = arr_l + arr_r
-        arr.sort(reverse=True)
-        print(arr)
-        for i in arr:
-            s = s[:i] + s[i+1:]
+        for i in range(len(stack)-1, -1, -1):
+            del res[stack[i]]
 
-        return s
+        return ''.join(res)
