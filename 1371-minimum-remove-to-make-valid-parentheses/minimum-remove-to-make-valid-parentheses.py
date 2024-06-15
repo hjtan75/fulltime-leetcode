@@ -8,23 +8,21 @@ class Solution:
         # SP: O(n) for the stack
 
         stack = []
-        res = [c for c in s]
         i = 0
-        while i < len(res):
-            if res[i] == '(':
+        while i < len(s):
+            if s[i] == '(':
                 stack.append(i)
                 i += 1
-            elif res[i] == ')':
+            elif s[i] == ')':
                 if len(stack) == 0:
-                    del res[i]
+                    s = s[:i] + s[i+1:]
                 else:
                     stack.pop()
                     i += 1
             else:
-    
                 i += 1
-
+        
         for i in range(len(stack)-1, -1, -1):
-            del res[stack[i]]
+            s = s[:stack[i]] + s[stack[i]+1:]
 
-        return ''.join(res)
+        return s
