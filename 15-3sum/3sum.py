@@ -29,24 +29,27 @@ class Solution:
             val_dict[nums[i]].add(i)
 
         for i in range(len(nums)):
+            if nums[i] > 0:
+                break
             if i > 0 and nums[i] == nums[i-1]:
                 continue
             for j in range(i+1, len(nums)):
                 val = nums[i] + nums[j]
                 if (-val) in val_dict:
-                    if (len(val_dict[-val]) <= 2 and i not in val_dict[-val] and j not in val_dict[-val]):
-                        for k in val_dict[-val]:
-                             if i != k and j != k:
-                                s = ','.join(sorted([str(nums[i]), str(nums[j]), str(nums[k])]))
-                                res.add(s)
-                                break
+                    # print(-val)
+                    # if (len(val_dict[-val]) <= 2 and i not in val_dict[-val] and j not in val_dict[-val]):
+                    #     for k in val_dict[-val]:
+                    #          if i != k and j != k:
+                    #             s = ','.join(sorted([str(nums[i]), str(nums[j]), str(nums[k])]))
+                    #             res.add(s)
+                    #             break
                                 
-                    if len(val_dict[-val]) > 2:
-                        for k in val_dict[-val]:
-                            if  i != k and j != k:
-                                s = ','.join(sorted([str(nums[i]), str(nums[j]), str(nums[k])]))
-                                res.add(s)
-                                break
+                    # if len(val_dict[-val]) > 2:
+                    for k in val_dict[-val]:
+                        if  i != k and j != k:
+                            s = ','.join(sorted([str(nums[i]), str(nums[j]), str(nums[k])]))
+                            res.add(s)
+                            break
         res = list(res)
         for i in range(len(res)):
             res[i] = res[i].split(',')
