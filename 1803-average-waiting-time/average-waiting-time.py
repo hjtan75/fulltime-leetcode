@@ -9,12 +9,13 @@ class Solution:
         # TC: O(n)
         # SC: O(1)
 
-        num_cus, wait_sum = len(customers), 0
+        num_cus, wait_sum = 0, 0
         curr_time = -1
 
         for arrival, time in customers:
             curr_time = max(curr_time, arrival)
             curr_time += time
             wait_sum += curr_time - arrival
+            num_cus += 1
 
         return wait_sum / num_cus
