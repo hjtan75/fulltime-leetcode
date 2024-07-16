@@ -5,7 +5,7 @@ class Solution:
 
         if len(queryIP) > 39:
             return 'Neither'
-            
+
         for c in queryIP:
             if c == '.':
                 dot_cnt += 1
@@ -18,7 +18,7 @@ class Solution:
                 return 'Neither'
             for cla in classes:
                 if cla.isnumeric():
-                    if len(cla) > 1 and cla[0] == '0':
+                    if (len(cla) > 1 and cla[0] == '0') or len(cla) > 3:
                         return 'Neither'
 
                     num = int(cla)
