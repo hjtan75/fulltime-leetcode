@@ -13,9 +13,18 @@ class Solution:
             except:
                 return False
 
-        if queryIP.count('.') == 3 and all(isIPv4(i) for i in queryIP.split('.')):
+        dot_cnt = 0
+        sem_cnt = 0
+
+        for c in queryIP:
+            if c == '.':
+                dot_cnt += 1
+            if c == ':':
+                sem_cnt += 1
+
+        if dot_cnt == 3 and all(isIPv4(i) for i in queryIP.split('.')):
             return "IPv4"
 
-        if queryIP.count(':') == 7 and all(isIPv6(i) for i in queryIP.split(':')):
+        if sem_cnt == 7 and all(isIPv6(i) for i in queryIP.split(':')):
             return "IPv6"
         return 'Neither'
