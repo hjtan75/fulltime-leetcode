@@ -3,6 +3,9 @@ class Solution:
         dot_cnt = 0
         sem_cnt = 0
 
+        if len(queryIP) > 39:
+            return 'Neither'
+            
         for c in queryIP:
             if c == '.':
                 dot_cnt += 1
